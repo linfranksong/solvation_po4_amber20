@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH -J m0.88495
+#SBATCH -e test.err
+#SBATCH -o test.out
+#SBATCH --nodes=1             ### Node count required for the job
+#SBATCH --ntasks-per-node=1   ### Nuber of tasks to be launched per Node     
+#SBATCH --gres=gpu:1          ### General REServation of gpu:number of gpus
+#SBATCH --mem=8G
+#SBATCH --time=2:00:00
+  
+echo $SLURM_SUBMIT_DIR
+cd $SLURM_SUBMIT_DIR
+
+#-------------- Load Modules ------------------
+module purge
+ulimit -c 0
+ml -* GCC/8.3.0  CUDA/10.1.243  OpenMPI/3.1.4 Amber/20
+
+exe=$AMBERHOME/bin/pmemd.cuda
+
+#-------------- Run job -----------------------
+echo 'RUN AMBER JOB'
+# running command
+$exe -O -i min.in -o min.out -c step2_final.inpcrd -p step2_final.prmtop -r min.rst -x min.netcdf -inf min.mdinfo -ref step2_final.inpcrd
+if grep "Total wall time" min.out;then
+   sbatch eq.pbs
+else
+   sbatch mh.pbs
+fi
+echo 'FINISH JOB, SAVE IT TO SCRATCH'
