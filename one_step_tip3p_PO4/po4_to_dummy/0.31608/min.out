@@ -6,11 +6,11 @@
 | PMEMD implementation of SANDER, Release 18
 
 |  Compiled date/time: Mon Apr 27 21:19:54 2020
-| Run on 09/30/2020 at 18:27:29
+| Run on 10/06/2020 at 12:40:47
 
 |   Executable path: /opt/software/Amber/20-fosscuda-2019b/amber20/bin/pmemd.cuda
 | Working directory: /mnt/ls15/scratch/users/songlin3/run/solvation_amber20/po4/one_step_tip3p_PO4/po4_to_dummy/0.31608
-|          Hostname: lac-085
+|          Hostname: lac-289
 
   [-O]verwriting output
 
@@ -33,25 +33,25 @@ File Assignments:
 minimization                                                                   
  &cntrl                                                                        
   imin=1,                                                                      
+  ntmin=2,                                                                     
   maxcyc=20000,                                                                
-  ncyc=10000,                                                                  
   cut=10.0,                                                                    
-  ntc=2,                                                                       
-  ntf=2,                                                                       
+  ntc=1,                                                                       
+  ntf=1,                                                                       
   ntb=1,                                                                       
   ntpr=5000,                                                                   
   ntwr=5000,                                                                   
   ntwx=2000,                                                                   
   ioutfm=1,                                                                    
   iwrap=0,                                                                     
-  ifsc = 0, icfe=1,                                                            
+  ifsc = 1, icfe=1,                                                            
   clambda=0.31608,                                                             
-  timask1=':1',                                                                
+  timask1=':1', scmask1=':1', scmask2=':2',                                    
   timask2=':2',                                                                
 /                                                                              
 
 
-Note: ig = -1. Setting random seed to   474321 based on wallclock time in 
+Note: ig = -1. Setting random seed to   597790 based on wallclock time in 
       microseconds.
 | irandom = 1, using AMBER's internal random number generator (default).
  
@@ -127,7 +127,7 @@ Note: ig = -1. Setting random seed to   474321 based on wallclock time in
 |   CUDA Capable Devices Detected:      1
 |           CUDA Device ID in use:      0
 |                CUDA Device Name: Tesla K80
-|     CUDA Device Global Mem Size:  12206 MB
+|     CUDA Device Global Mem Size:  11441 MB
 | CUDA Device Num Multiprocessors:     13
 |           CUDA Device Core Freq:   0.82 GHz
 |
@@ -189,7 +189,7 @@ Nature and format of output:
      ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
 
 Potential function:
-     ntf     =       2, ntb     =       1, igb     =       0, nsnb    =      25
+     ntf     =       1, ntb     =       1, igb     =       0, nsnb    =      25
      ipol    =       0, gbsa    =       0, iesp    =       0
      dielc   =   1.00000, cut     =  10.00000, intdiel =   1.00000
 
@@ -197,15 +197,11 @@ Frozen or restrained atoms:
      ibelly  =       0, ntr     =       0
 
 Energy minimization:
-     maxcyc  =   20000, ncyc    =   10000, ntmin   =       1
+     maxcyc  =   20000, ncyc    =      10, ntmin   =       2
      dx0     =   0.01000, drms    =   0.00010
 
-SHAKE:
-     ntc     =       2, jfastw  =       0
-     tol     =   0.00001
-
 Free energy options:
-     icfe    =       1, ifsc    =       0, klambda =       1
+     icfe    =       1, ifsc    =       1, klambda =       1
      clambda =  0.3161, scalpha =  0.5000, scbeta  = 12.0000
      sceeorder =       2
      dynlmb =  0.0000 logdvdl =       0
@@ -229,7 +225,8 @@ Ewald parameters:
      TI Mask 2 :2; matches      5 atoms
      TI region 1:   11414 atoms
      TI region 2:   11414 atoms
-     Checking for mismatched coordinates.
+     SC Mask 1 :1; matches      5 atoms
+     SC Mask 2 :2; matches      5 atoms
 
 --------------------------------------------------------------------------------
    3.  ATOMIC COORDINATES AND VELOCITIES
@@ -240,6 +237,8 @@ Ewald parameters:
 
  
  Number of triangulated 3-point waters found:     3803
+ Number of shake restraints removed in TI region  1 :        0
+ Number of shake restraints removed in TI region  2 :        0
 
      Sum of charges for TI region  1 =  -2.99999999
      Skip neutralizing charges...
@@ -250,13 +249,13 @@ Ewald parameters:
 
 | Dynamic Memory, Types Used:
 | Reals              531773
-| Integers           434058
+| Integers           434048
 
 | Nonbonded Pairs Initial Allocation:     3453962
 
 | GPU memory information (estimate):
-| KB of GPU memory in use:     67233
-| KB of CPU memory in use:     24225
+| KB of GPU memory in use:     67909
+| KB of CPU memory in use:     24901
 
 --------------------------------------------------------------------------------
    4.  RESULTS
@@ -268,128 +267,210 @@ Ewald parameters:
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-      1      -2.6269E+04     2.5767E+02     1.1379E+04     O       10580
+      1      -2.6278E+04     2.1036E+02     1.1379E+04     O       10580
 
- BOND    =       13.7336  ANGLE   =        6.2593  DIHED      =        0.0000
- VDWAALS =    11124.6472  EEL     =   -37413.8129  HBOND      =        0.0000
+ BOND    =        0.1835  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =    11123.8302  EEL     =   -37402.1995  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       101.2078
+ DV/DL  =       102.2078
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =        19.9929
+ SC_BOND=        13.7336  SC_ANGLE=         6.2593  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=      2.8443  SC_VDW_DER=       0.0941  SC_DERIV   =         2.9384
+ ------------------------------------------------------------------------------
+
 
 | TI region  2
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-      1      -2.6269E+04     2.5767E+02     1.1379E+04     O       10580
+      1      -2.6278E+04     2.1036E+02     1.1379E+04     O       10580
 
- BOND    =       13.7336  ANGLE   =        6.2593  DIHED      =        0.0000
- VDWAALS =    11124.6472  EEL     =   -37413.8129  HBOND      =        0.0000
+ BOND    =        0.1835  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =    11123.8302  EEL     =   -37402.1995  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       101.2078
+ DV/DL  =       102.2078
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =        19.9929
+ SC_BOND=        13.7336  SC_ANGLE=         6.2593  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=      2.8443  SC_VDW_DER=       0.0941  SC_DERIV   =         2.9384
+ ------------------------------------------------------------------------------
+
 
 | TI region  1
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-   5000      -3.4779E+04     1.4738E+01     3.9023E+01     O        2957
+   5000      -4.7590E+04     2.5540E-01     2.1396E+00     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4152  DIHED      =        0.0000
- VDWAALS =     2555.8426  EEL     =   -37341.2773  HBOND      =        0.0000
+ BOND    =     3611.6718  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9258.8370  EEL     =   -60460.3304  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.5478
+ DV/DL  =       613.4616
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.5313
+ SC_BOND=         0.1415  SC_ANGLE=         6.3898  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=     80.8546  SC_VDW_DER=     -11.9142  SC_DERIV   =        68.9405
+ ------------------------------------------------------------------------------
+
 
 | TI region  2
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-   5000      -3.4779E+04     1.4738E+01     3.9023E+01     O        2957
+   5000      -4.7590E+04     2.5540E-01     2.1396E+00     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4152  DIHED      =        0.0000
- VDWAALS =     2555.8426  EEL     =   -37341.2773  HBOND      =        0.0000
+ BOND    =     3611.6718  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9258.8370  EEL     =   -60460.3304  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.5478
+ DV/DL  =       613.4616
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.2592
+ SC_BOND=         0.0000  SC_ANGLE=         6.2592  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=     80.8546  SC_VDW_DER=     -11.9142  SC_DERIV   =        68.9405
+ ------------------------------------------------------------------------------
+
 
 | TI region  1
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-  10000      -3.4778E+04     1.4738E+01     3.9023E+01     O        2957
+  10000      -4.8069E+04     1.3285E-01     2.2317E+00     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4151  DIHED      =        0.0000
- VDWAALS =     2555.3599  EEL     =   -37340.0948  HBOND      =        0.0000
+ BOND    =     3727.6195  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9652.7959  EEL     =   -61449.3613  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.5935
+ DV/DL  =       659.4265
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.5478
+ SC_BOND=         0.1871  SC_ANGLE=         6.3607  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=     97.4061  SC_VDW_DER=     -15.1499  SC_DERIV   =        82.2562
+ ------------------------------------------------------------------------------
+
 
 | TI region  2
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-  10000      -3.4778E+04     1.4738E+01     3.9023E+01     O        2957
+  10000      -4.8069E+04     1.3285E-01     2.2317E+00     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4151  DIHED      =        0.0000
- VDWAALS =     2555.3599  EEL     =   -37340.0948  HBOND      =        0.0000
+ BOND    =     3727.6195  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9652.7959  EEL     =   -61449.3613  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.5935
+ DV/DL  =       659.4265
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.2592
+ SC_BOND=         0.0000  SC_ANGLE=         6.2592  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=     97.4061  SC_VDW_DER=     -15.1499  SC_DERIV   =        82.2562
+ ------------------------------------------------------------------------------
 
-     .... RESTARTED DUE TO LINMIN FAILURE ...
-
-     .... RESTARTED DUE TO LINMIN FAILURE ...
 
 | TI region  1
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-  15000      -3.4778E+04     1.4738E+01     3.9024E+01     O        2957
+  15000      -4.8308E+04     5.1836E-02     8.6737E-01     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4151  DIHED      =        0.0000
- VDWAALS =     2555.2109  EEL     =   -37339.7313  HBOND      =        0.0000
+ BOND    =     3787.7435  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9852.3983  EEL     =   -61948.4359  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.6072
+ DV/DL  =       672.9788
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.5753
+ SC_BOND=         0.2119  SC_ANGLE=         6.3633  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=    102.3608  SC_VDW_DER=     -17.7400  SC_DERIV   =        84.6208
+ ------------------------------------------------------------------------------
+
 
 | TI region  2
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-  15000      -3.4778E+04     1.4738E+01     3.9024E+01     O        2957
+  15000      -4.8308E+04     5.1836E-02     8.6737E-01     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4151  DIHED      =        0.0000
- VDWAALS =     2555.2109  EEL     =   -37339.7313  HBOND      =        0.0000
+ BOND    =     3787.7435  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9852.3983  EEL     =   -61948.4359  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.6072
+ DV/DL  =       672.9788
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.2592
+ SC_BOND=         0.0000  SC_ANGLE=         6.2592  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=    102.3608  SC_VDW_DER=     -17.7400  SC_DERIV   =        84.6208
+ ------------------------------------------------------------------------------
 
-     .... RESTARTED DUE TO LINMIN FAILURE ...
-
-     .... RESTARTED DUE TO LINMIN FAILURE ...
 
 | TI region  1
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-  20000      -3.4778E+04     1.4738E+01     3.9024E+01     O        2957
+  20000      -4.8494E+04     9.3845E-02     2.2145E+00     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4151  DIHED      =        0.0000
- VDWAALS =     2555.0585  EEL     =   -37339.3536  HBOND      =        0.0000
+ BOND    =     3836.2005  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9997.7119  EEL     =   -62328.2991  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.6214
+ DV/DL  =       684.6576
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.5566
+ SC_BOND=         0.2090  SC_ANGLE=         6.3476  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=    101.6852  SC_VDW_DER=     -14.8521  SC_DERIV   =        86.8331
+ ------------------------------------------------------------------------------
+
 
 | TI region  2
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-  20000      -3.4778E+04     1.4738E+01     3.9024E+01     O        2957
+  20000      -4.8494E+04     9.3845E-02     2.2145E+00     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4151  DIHED      =        0.0000
- VDWAALS =     2555.0585  EEL     =   -37339.3536  HBOND      =        0.0000
+ BOND    =     3836.2005  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9997.7119  EEL     =   -62328.2991  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.6214
+ DV/DL  =       684.6576
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.2592
+ SC_BOND=         0.0000  SC_ANGLE=         6.2592  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=    101.6852  SC_VDW_DER=     -14.8521  SC_DERIV   =        86.8331
+ ------------------------------------------------------------------------------
+
 
 
   Maximum number of minimization cycles reached.
@@ -403,24 +484,42 @@ Ewald parameters:
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-  20000      -3.4778E+04     1.4738E+01     3.9024E+01     O        2957
+  20000      -4.8494E+04     9.3845E-02     2.2145E+00     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4151  DIHED      =        0.0000
- VDWAALS =     2555.0585  EEL     =   -37339.3536  HBOND      =        0.0000
+ BOND    =     3836.2005  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9997.7119  EEL     =   -62328.2991  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.6214
+ DV/DL  =       684.6576
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.5566
+ SC_BOND=         0.2090  SC_ANGLE=         6.3476  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=    101.6852  SC_VDW_DER=     -14.8521  SC_DERIV   =        86.8331
+ ------------------------------------------------------------------------------
+
 
 | TI region  2
 
 
 
    NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
-  20000      -3.4778E+04     1.4738E+01     3.9024E+01     O        2957
+  20000      -4.8494E+04     9.3845E-02     2.2145E+00     H2      10996
 
- BOND    =        0.0315  ANGLE   =        6.4151  DIHED      =        0.0000
- VDWAALS =     2555.0585  EEL     =   -37339.3536  HBOND      =        0.0000
+ BOND    =     3836.2005  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =     9997.7119  EEL     =   -62328.2991  HBOND      =        0.0000
  1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
- DV/DL  =       226.6214
+ DV/DL  =       684.6576
+  Softcore part of the system:       5 atoms,       TEMP(K)    =           0.00
+ SC_Etot=         0.0000  SC_EKtot=         0.0000  SC_EPtot   =         6.2592
+ SC_BOND=         0.0000  SC_ANGLE=         6.2592  SC_DIHED   =         0.0000
+ SC_14NB=         0.0000  SC_14EEL=         0.0000  SC_VDW     =         0.0000
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0000  SC_RES_ANG=       0.0000  SC_RES_TORS=         0.0000
+ SC_EEL_DER=    101.6852  SC_VDW_DER=     -14.8521  SC_DERIV   =        86.8331
+ ------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------
    5.  TIMINGS
 --------------------------------------------------------------------------------
@@ -429,14 +528,14 @@ Ewald parameters:
 |
 |     Routine           Sec        %
 |     ------------------------------
-|     Nonbond          33.87   58.35
+|     Nonbond          27.69   72.33
 |     Bond              0.00    0.00
 |     Angle             0.00    0.00
 |     Dihedral          0.00    0.00
-|     Shake             9.27   15.98
-|     Other            14.90   25.67
+|     Shake             0.00    0.00
+|     Other            10.59   27.67
 |     ------------------------------
-|     Total            58.04
+|     Total            38.28
 
 |  PME Nonbond Pairlist CPU Time:
 |
@@ -453,9 +552,9 @@ Ewald parameters:
 |     ---------------------------------
 |     NonBonded Calc       0.00    0.00
 |     Exclude Masked       0.00    0.00
-|     Other                0.05    0.09
+|     Other                0.05    0.14
 |     ---------------------------------
-|     Total                0.05    0.09
+|     Total                0.05    0.14
 
 |  PME Reciprocal Force CPU Time:
 |
@@ -469,10 +568,10 @@ Ewald parameters:
 |     ---------------------------------
 |     Total                0.00    0.00
 
-|  Setup CPU time:            0.63 seconds
-|  NonSetup CPU time:        58.04 seconds
-|  Total CPU time:           58.67 seconds     0.02 hours
+|  Setup CPU time:            0.61 seconds
+|  NonSetup CPU time:        38.28 seconds
+|  Total CPU time:           38.89 seconds     0.01 hours
 
-|  Setup wall time:           1    seconds
-|  NonSetup wall time:       58    seconds
-|  Total wall time:          59    seconds     0.02 hours
+|  Setup wall time:           0    seconds
+|  NonSetup wall time:       39    seconds
+|  Total wall time:          39    seconds     0.01 hours
